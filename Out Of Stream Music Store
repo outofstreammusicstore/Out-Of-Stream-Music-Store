@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Out Of Stream Music Store — Formato Físico Curado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg-cream: #FBF9F7;
+      --bg-surface: #F5F5F4;
+      --ink-primary: #171717;
+      --ink-secondary: #57534E;
+      --accent-terracotta: #B45309;
+      --accent-terracotta-hover: #92400E;
+      --border-subtle: #E7E5E4;
+      --radius-card: 12px;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, select, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-terracotta);
+      outline-offset: 3px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navegación */
+    .site-header {
+      border-bottom: 1px solid var(--border-subtle);
+      background-color: rgba(251, 249, 247, 0.94);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 16px;
+    }
+
+    .brand-mark {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-handle {
+      font-size: 0.75rem;
+      color: var(--ink-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 32px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+    }
+
+    .nav-links a:hover {
+      color: var(--ink-primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Botones táctiles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-card);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 12px 20px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(23, 23, 23, 0.1);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background-color: var(--ink-primary);
+      color: var(--bg-cream);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: #292524;
+    }
+
+    .btn-accent {
+      background-color: var(--accent-terracotta);
+      color: #FFFBEB;
+    }
+
+    .btn-accent:hover:not(:disabled) {
+      background-color: var(--accent-terracotta-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border-color: var(--border-subtle);
+      color: var(--ink-primary);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--bg-surface);
+      border-color: #D6D3D1;
+    }
+
+    .cart-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background-color: var(--accent-terracotta);
+      color: #FFFBEB;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Hero asimétrico 7/5 */
+    .hero {
+      padding: 64px 0 96px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-terracotta);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero-copy {
+      font-size: 1.125rem;
+      color: var(--ink-secondary);
+      max-width: 56ch;
+      margin-bottom: 32px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Plato giradiscos blanco Pioneer en SVG limpio y minimalista */
+    .turntable-stage {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .turntable-svg {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+    }
+
+    .vinyl-platter {
+      transform-origin: 175px 180px;
+      transition: transform 0.4s ease-out;
+    }
+
+    .turntable-stage.is-spinning .vinyl-platter {
+      animation: spinVinyl 6s linear infinite;
+    }
+
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .turntable-caption {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--ink-secondary);
+    }
+
+    /* Secciones */
+    section {
+      padding: 96px 0;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      color: var(--ink-secondary);
+      max-width: 60ch;
+      font-size: 1rem;
+    }
+
+    /* Controles de batea */
+    .filter-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 40px;
+      padding: 24px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-cream);
+      color: var(--ink-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .chip-btn:hover {
+      border-color: var(--ink-primary);
+      color: var(--ink-primary);
+    }
+
+    .chip-btn[aria-pressed="true"] {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      color: var(--bg-cream);
+    }
+
+    .filter-controls-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .field-input,
+    .field-select {
+      padding: 12px 16px;
+      border-radius: var(--radius-card);
+      border: 1px solid #D6D3D1;
+      background-color: var(--bg-cream);
+      font-size: 0.9375rem;
+    }
+
+    /* Grilla de lanzamientos */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .release-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .release-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(23, 23, 23, 0.06);
+    }
+
+    .sleeve-art {
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .sleeve-format {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sleeve-crate {
+      font-size: 0.8125rem;
+      opacity: 0.85;
+    }
+
+    .release-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .release-artist {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent-terracotta);
+    }
+
+    .release-title {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+
+    .release-condition {
+      font-size: 0.875rem;
+      color: var(--ink-secondary);
+    }
+
+    .release-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .release-price {
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    /* Curaduría y formatos (asimétrico 7/5) */
+    .curation-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .curation-pillars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .pillar-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 24px;
+    }
+
+    .pillar-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+
+    .pillar-card p {
+      color: var(--ink-secondary);
+      font-size: 0.9375rem;
+    }
+
+    .formats-table-wrap {
+      overflow-x: auto;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+
+    th, td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--ink-secondary);
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Cajón de batea / carrito */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(23, 23, 23, 0.45);
+      display: none;
+      justify-content: flex-end;
+      z-index: 50;
+    }
+
+    .drawer-backdrop.is-open {
+      display: flex;
+    }
+
+    .drawer-panel {
+      width: 100%;
+      max-width: 440px;
+      background-color: var(--bg-cream);
+      height: 100%;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      overflow-y: auto;
+      border-left: 1px solid var(--border-subtle);
+    }
+
+    .drawer-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .cart-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-cream);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .icon-btn:hover {
+      background-color: var(--bg-surface);
+    }
+
+    .checkout-confirmation {
+      padding: 16px;
+      border-radius: var(--radius-card);
+      background-color: #FEF3C7;
+      border: 1px solid #F59E0B;
+      color: #78350F;
+      font-size: 0.875rem;
+      display: none;
+    }
+
+    .checkout-confirmation.is-visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 64px 0;
+      background-color: var(--bg-surface);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .hero-title {
+        font-size: 3.75rem;
+      }
+      .filter-controls-row {
+        grid-template-columns: 1.5fr 1fr;
+      }
+      .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+      .footer-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 4.5rem;
+      }
+      .hero-grid {
+        grid-template-columns: 7fr 5fr;
+      }
+      .curation-grid {
+        grid-template-columns: 7fr 5fr;
+      }
+      .catalog-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-mark" aria-label="Out Of Stream Music Store inicio">
+        <span class="brand-name">Out Of Stream</span>
+        <span class="brand-handle">Music Store · @outofstreamstore</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#catalogo">Bateas</a>
+        <a href="#curaduria">Criterio de edición</a>
+        <a href="#formatos">Formatos</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          type="button"
+          id="openCartBtn"
+          class="btn btn-secondary"
+          aria-label="Abrir batea de compra"
+        >
+          <i data-lucide="disc-3" aria-hidden="true"></i>
+          <span>Batea</span>
+          <span id="cartBadge" class="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero asimétrico 7/5 -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="hero-eyebrow">Ediciones físicas verificadas</p>
+          <h1 class="hero-title">Música con cuerpo, funda y memoria.</h1>
+          <p class="hero-copy">
+            Vinilos LP, singles de 7 y 12 pulgadas, discos compactos, casetes y ediciones
+            audiovisuales seleccionadas batea por batea. Sin compresión algorítmica: cada
+            ejemplar llega revisado y listo para sonar.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#catalogo" class="btn btn-primary">
+              <span>Explorar catálogo</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="#curaduria" class="btn btn-secondary">
+              <span>Conocer la curaduría</span>
+            </a>
+          </div>
+        </div>
+
+        <div id="turntableStage" class="turntable-stage" aria-label="Plato giradiscos blanco de referencia">
+          <svg
+            class="turntable-svg"
+            viewBox="0 0 360 360"
+            role="img"
+            aria-label="Ilustración técnica de plato giradiscos blanco con disco de vinilo negro"
+          >
+            <rect x="20" y="20" width="320" height="320" rx="18" fill="#FBF9F7" stroke="#D6D3D1" stroke-width="2" />
+            <g class="vinyl-platter">
+              <circle cx="175" cy="180" r="126" fill="#171717" />
+              <circle cx="175" cy="180" r="112" fill="none" stroke="#292524" stroke-width="1.5" />
+              <circle cx="175" cy="180" r="92" fill="none" stroke="#292524" stroke-width="1.5" />
+              <circle cx="175" cy="180" r="72" fill="none" stroke="#292524" stroke-width="1.5" />
+              <circle cx="175" cy="180" r="42" fill="#B45309" />
+              <circle cx="175" cy="180" r="8" fill="#FBF9F7" />
+            </g>
+            <!-- Brazo y cápsula -->
+            <circle cx="302" cy="76" r="18" fill="#E7E5E4" stroke="#A8A29E" stroke-width="1.5" />
+            <line x1="302" y1="76" x2="246" y2="238" stroke="#57534E" stroke-width="5" stroke-linecap="round" />
+            <rect x="234" y="234" width="22" height="14" rx="3" transform="rotate(18 245 241)" fill="#171717" />
+            <!-- Control inferior -->
+            <circle cx="52" cy="306" r="10" fill="#B45309" />
+            <rect x="76" y="298" width="52" height="16" rx="4" fill="#E7E5E4" />
+          </svg>
+
+          <div class="turntable-caption">
+            <span id="turntableStatus">Plato en reposo · 33 ⅓ RPM</span>
+            <button type="button" id="togglePlatterBtn" class="btn btn-secondary">
+              <i data-lucide="play" aria-hidden="true"></i>
+              <span>Girar plato</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catálogo filtrable -->
+    <section id="catalogo">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Bateas destacadas</h2>
+          <p class="section-subtitle">
+            Filtra por formato o batea temática, busca por artista o título y arma tu selección
+            antes de reservar.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-chips" role="group" aria-label="Filtrar por formato físico">
+            <button type="button" class="chip-btn" data-format="Todos" aria-pressed="true">Todos</button>
+            <button type="button" class="chip-btn" data-format="Vinilo LP" aria-pressed="false">Vinilo LP</button>
+            <button type="button" class="chip-btn" data-format="Single 7&quot; / 12&quot;" aria-pressed="false">Single 7" / 12"</button>
+            <button type="button" class="chip-btn" data-format="CD" aria-pressed="false">CD</button>
+            <button type="button" class="chip-btn" data-format="Casete" aria-pressed="false">Casete</button>
+            <button type="button" class="chip-btn" data-format="DVD / Blu-ray" aria-pressed="false">DVD / Blu-ray</button>
+          </div>
+
+          <div class="filter-controls-row">
+            <div class="field-group">
+              <label for="searchInput" class="field-label">Buscar artista, título o batea</label>
+              <input
+                id="searchInput"
+                type="search"
+                class="field-input"
+                placeholder="Ej. Rock Progresivo, Jazz Rock, edición nacional..."
+              />
+            </div>
+
+            <div class="field-group">
+              <label for="crateSelect" class="field-label">Batea temática</label>
+              <select id="crateSelect" class="field-select">
+                <option value="Todas">Todas las bateas</option>
+                <option value="Rock Progresivo">Rock Progresivo</option>
+                <option value="Rock Nacional y Latinoamericano">Rock Nacional y Latinoamericano</option>
+                <option value="Jazz Rock">Jazz Rock</option>
+                <option value="Disco / Funk / Soul">Disco / Funk / Soul</option>
+                <option value="Hard Rock / Metal">Hard Rock / Metal</option>
+                <option value="Brasil y Latino">Brasil y Latino</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="catalogGrid" class="catalog-grid"></div>
+      </div>
+    </section>
+
+    <!-- Curaduría y tabla de formatos (7/5) -->
+    <section id="curaduria">
+      <div class="container curation-grid">
+        <div>
+          <div class="section-header">
+            <h2 class="section-title">Criterio de curaduría</h2>
+            <p class="section-subtitle">
+              Cada título pasa por revisión visual de tapa, insertos y superficie antes de sumarse
+              a la batea.
+            </p>
+          </div>
+
+          <div class="curation-pillars">
+            <article class="pillar-card">
+              <h3>Catalogación real por batea</h3>
+              <p>
+                Separamos prensajes originales, reediciones cuidadas y rarezas en bateas claras para
+                que encuentres exactamente el sonido y la época que buscas.
+              </p>
+            </article>
+            <article class="pillar-card">
+              <h3>Grado de conservación transparente</h3>
+              <p>
+                Indicamos el estado de la funda y del soporte físico con criterio honesto, evitando
+                sorpresas al abrir el paquete.
+              </p>
+            </article>
+            <article class="pillar-card">
+              <h3>Embalaje pensado para coleccionistas</h3>
+              <p>
+                Protección rígida en esquinas y separación del disco respecto de la tapa cuando el
+                formato lo requiere.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div id="formatos">
+          <div class="section-header">
+            <h2 class="section-title">Formatos disponibles</h2>
+            <p class="section-subtitle">
+              Soportes físicos habituales en tienda.
+            </p>
+          </div>
+
+          <div class="formats-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Formato</th>
+                  <th>Velocidad / Uso</th>
+                  <th>Presentación</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Vinilo LP</strong></td>
+                  <td>33 ⅓ RPM</td>
+                  <td>Funda simple o gatefold</td>
+                </tr>
+                <tr>
+                  <td><strong>Single 7" / 12"</strong></td>
+                  <td>45 / 33 ⅓ RPM</td>
+                  <td>Edición extendida o sencillo</td>
+                </tr>
+                <tr>
+                  <td><strong>CD</strong></td>
+                  <td>Audio digital físico</td>
+                  <td>Jewel case, digipack o slipcase</td>
+                </tr>
+                <tr>
+                  <td><strong>Casete</strong></td>
+                  <td>Cinta magnética</td>
+                  <td>Carcasa transparente y j-card</td>
+                </tr>
+                <tr>
+                  <td><strong>DVD / Blu-ray</strong></td>
+                  <td>Concierto y archivo</td>
+                  <td>Estuche con libreto o extras</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cajón de compra -->
+  <div id="cartDrawer" class="drawer-backdrop" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="drawer-panel">
+      <div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <h2 id="drawerTitle" class="section-title" style="font-size: 1.5rem;">Tu batea de compra</h2>
+          <button type="button" id="closeCartBtn" class="icon-btn" aria-label="Cerrar batea de compra">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div id="cartItemsContainer" class="drawer-items"></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; border-top: 1px solid var(--border-subtle); padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.125rem;">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0</span>
+        </div>
+
+        <div id="checkoutConfirmation" class="checkout-confirmation" role="status">
+          Reserva preparada. Puedes coordinar el retiro o envío escribiendo a @outofstreamstore.
+        </div>
+
+        <button type="button" id="confirmOrderBtn" class="btn btn-accent" disabled>
+          <span>Confirmar reserva</span>
+          <i data-lucide="check" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="brand-name">Out Of Stream Music Store</p>
+        <p class="brand-handle" style="margin-top: 4px;">
+          Vinilos, CDs, casetes y ediciones audiovisuales · Instagram @outofstreamstore
+        </p>
+      </div>
+      <p style="font-size: 0.875rem; color: var(--ink-secondary);">
+        Catálogo físico curado con criterio editorial.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const RELEASES = [
+      {
+        id: 'lp-01',
+        artist: 'Keith Emerson',
+        title: 'Honky — Banda de Sonido Original',
+        format: 'Vinilo LP',
+        crate: 'Rock Progresivo',
+        condition: 'VG+ / VG+ · Edición original',
+        price: 28500,
+        swatchBg: '#E7E5E4',
+        swatchInk: '#171717'
+      },
+      {
+        id: 'lp-02',
+        artist: 'La Torre',
+        title: 'Solo por un poco más',
+        format: 'Vinilo LP',
+        crate: 'Rock Nacional y Latinoamericano',
+        condition: 'VG+ / EX · Prensaje argentino',
+        price: 24000,
+        swatchBg: '#FDE68A',
+        swatchInk: '#292524'
+      },
+      {
+        id: 'cd-03',
+        artist: 'Al Jarreau',
+        title: 'Breakin’ Away',
+        format: 'CD',
+        crate: 'Jazz Rock',
+        condition: 'NM · Jewel case original',
+        price: 14500,
+        swatchBg: '#D6D3D1',
+        swatchInk: '#171717'
+      },
+      {
+        id: 'sg-04',
+        artist: 'Earth, Wind & Fire',
+        title: 'Let’s Groove (Edición Extendida)',
+        format: 'Single 7" / 12"',
+        crate: 'Disco / Funk / Soul',
+        condition: 'VG+ · 12 pulgadas 45 RPM',
+        price: 19800,
+        swatchBg: '#FDBA74',
+        swatchInk: '#1C1917'
+      },
+      {
+        id: 'cs-05',
+        artist: 'Iron Maiden',
+        title: 'Piece of Mind',
+        format: 'Casete',
+        crate: 'Hard Rock / Metal',
+        condition: 'VG+ · Cinta y carátula intactas',
+        price: 15200,
+        swatchBg: '#292524',
+        swatchInk: '#FBF9F7'
+      },
+      {
+        id: 'dv-06',
+        artist: 'Vinicius de Moraes',
+        title: 'En la Fusa con María Creuza y Toquinho',
+        format: 'DVD / Blu-ray',
+        crate: 'Brasil y Latino',
+        condition: 'EX · Edición de archivo musical',
+        price: 17900,
+        swatchBg: '#FED7AA',
+        swatchInk: '#171717'
+      }
+    ];
+
+    const state = {
+      format: 'Todos',
+      crate: 'Todas',
+      query: '',
+      cart: [],
+      spinning: false
+    };
+
+    const formatCurrency = (amount) =>
+      new Intl.NumberFormat('es-AR', {
+        style: 'currency',
+        currency: 'ARS',
+        maximumFractionDigits: 0
+      }).format(amount);
+
+    function getFilteredReleases() {
+      return RELEASES.filter((item) => {
+        const matchesFormat = state.format === 'Todos' || item.format === state.format;
+        const matchesCrate = state.crate === 'Todas' || item.crate === state.crate;
+        const normalizedQuery = state.query.trim().toLowerCase();
+        const matchesQuery =
+          !normalizedQuery ||
+          item.artist.toLowerCase().includes(normalizedQuery) ||
+          item.title.toLowerCase().includes(normalizedQuery) ||
+          item.crate.toLowerCase().includes(normalizedQuery);
+        return matchesFormat && matchesCrate && matchesQuery;
+      });
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById('catalogGrid');
+      const items = getFilteredReleases();
+
+      if (!items.length) {
+        grid.innerHTML = `
+          <div class="pillar-card" style="grid-column: 1 / -1;">
+            <h3>Sin coincidencias en este filtro</h3>
+            <p>Prueba limpiando la búsqueda o seleccionando otra batea temática.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = items
+        .map(
+          (item) => `
+          <article class="release-card">
+            <div class="sleeve-art" style="background-color: ${item.swatchBg}; color: ${item.swatchInk};">
+              <span class="sleeve-format">${item.format}</span>
+              <span class="sleeve-crate">${item.crate}</span>
+            </div>
+
+            <div class="release-meta">
+              <span class="release-artist">${item.artist}</span>
+              <h3 class="release-title">${item.title}</h3>
+              <span class="release-condition">${item.condition}</span>
+            </div>
+
+            <div class="release-footer">
+              <span class="release-price">${formatCurrency(item.price)}</span>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-add-id="${item.id}"
+              >
+                <i data-lucide="plus" aria-hidden="true"></i>
+                <span>Sumar</span>
+              </button>
+            </div>
+          </article>
+        `
+        )
+        .join('');
+
+      lucide.createIcons();
+    }
+
+    function addToCart(id) {
+      const found = RELEASES.find((r) => r.id === id);
+      if (!found) return;
+
+      const existing = state.cart.find((entry) => entry.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        state.cart.push({ ...found, qty: 1 });
+      }
+
+      document.getElementById('checkoutConfirmation').classList.remove('is-visible');
+      renderCart();
+    }
+
+    function updateQty(id, delta) {
+      const idx = state.cart.findIndex((entry) => entry.id === id);
+      if (idx === -1) return;
+
+      state.cart[idx].qty += delta;
+      if (state.cart[idx].qty <= 0) {
+        state.cart.splice(idx, 1);
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartItemsContainer');
+      const badge = document.getElementById('cartBadge');
+      const subtotalEl = document.getElementById('cartSubtotal');
+      const confirmBtn = document.getElementById('confirmOrderBtn');
+
+      const totalUnits = state.cart.reduce((acc, item) => acc + item.qty, 0);
+      const subtotal = state.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+
+      badge.textContent = String(totalUnits);
+      subtotalEl.textContent = formatCurrency(subtotal);
+      confirmBtn.disabled = state.cart.length === 0;
+
+      if (!state.cart.length) {
+        container.innerHTML = `
+          <p style="color: var(--ink-secondary); font-size: 0.9375rem;">
+            Tu batea está vacía. Agrega algún disco o edición desde el catálogo.
+          </p>
+        `;
+        return;
+      }
+
+      container.innerHTML = state.cart
+        .map(
+          (entry) => `
+          <div class="cart-row">
+            <div>
+              <p style="font-weight: 600; font-size: 0.9375rem;">${entry.title}</p>
+              <p style="color: var(--ink-secondary); font-size: 0.8125rem;">
+                ${entry.artist} · ${entry.format} · ${formatCurrency(entry.price)}
+              </p>
+            </div>
+            <div class="qty-controls">
+              <button
+                type="button"
+                class="icon-btn"
+                aria-label="Restar unidad de ${entry.title}"
+                data-qty-id="${entry.id}"
+                data-delta="-1"
+              >
+                <i data-lucide="minus" aria-hidden="true"></i>
+              </button>
+              <span style="min-width: 20px; text-align: center; font-weight: 600;">${entry.qty}</span>
+              <button
+                type="button"
+                class="icon-btn"
+                aria-label="Sumar unidad de ${entry.title}"
+                data-qty-id="${entry.id}"
+                data-delta="1"
+              >
+                <i data-lucide="plus" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        `
+        )
+        .join('');
+
+      lucide.createIcons();
+    }
+
+    // Eventos
+    document.querySelectorAll('.chip-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        state.format = btn.dataset.format;
+        document.querySelectorAll('.chip-btn').forEach((b) => {
+          b.setAttribute('aria-pressed', String(b === btn));
+        });
+        renderCatalog();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      state.query = e.target.value;
+      renderCatalog();
+    });
+
+    document.getElementById('crateSelect').addEventListener('change', (e) => {
+      state.crate = e.target.value;
+      renderCatalog();
+    });
+
+    document.getElementById('catalogGrid').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-add-id]');
+      if (btn) addToCart(btn.dataset.addId);
+    });
+
+    document.getElementById('cartItemsContainer').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-qty-id]');
+      if (btn) {
+        updateQty(btn.dataset.qtyId, Number(btn.dataset.delta));
+      }
+    });
+
+    const drawer = document.getElementById('cartDrawer');
+    document.getElementById('openCartBtn').addEventListener('click', () => {
+      drawer.classList.add('is-open');
+    });
+    document.getElementById('closeCartBtn').addEventListener('click', () => {
+      drawer.classList.remove('is-open');
+    });
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) drawer.classList.remove('is-open');
+    });
+
+    document.getElementById('confirmOrderBtn').addEventListener('click', () => {
+      document.getElementById('checkoutConfirmation').classList.add('is-visible');
+    });
+
+    const stage = document.getElementById('turntableStage');
+    const toggleBtn = document.getElementById('togglePlatterBtn');
+    const statusLabel = document.getElementById('turntableStatus');
+
+    toggleBtn.addEventListener('click', () => {
+      state.spinning = !state.spinning;
+      stage.classList.toggle('is-spinning', state.spinning);
+      statusLabel.textContent = state.spinning
+        ? 'Reproduciendo batea · 33 ⅓ RPM'
+        : 'Plato en reposo · 33 ⅓ RPM';
+      toggleBtn.innerHTML = state.spinning
+        ? '<i data-lucide="pause" aria-hidden="true"></i><span>Detener</span>'
+        : '<i data-lucide="play" aria-hidden="true"></i><span>Girar plato</span>';
+      lucide.createIcons();
+    });
+
+    renderCatalog();
+    renderCart();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
